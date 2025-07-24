@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book a Vet or Sitter - Pawverse</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    body { margin: 0; font-family: 'Montserrat', Arial, sans-serif; background: #f8fafc; color: #222; }
+    .navbar { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.04); position: sticky; top: 0; z-index: 10; }
+    .logo { font-size: 1.5rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; }
+    nav a { margin: 0 0.7rem; text-decoration: none; color: #333; font-weight: 500; transition: color 0.2s; position: relative; }
+    nav a::after { content: ''; display: block; width: 0; height: 2px; background: #ff6f61; transition: width 0.3s; position: absolute; left: 0; bottom: -2px; }
+    nav a:hover { color: #ff6f61; }
+    nav a:hover::after { width: 100%; }
+    .cart-badge { display: inline-block; min-width: 18px; height: 18px; background: #ff6f61; color: #fff; font-size: 0.85rem; border-radius: 50%; text-align: center; line-height: 18px; position: absolute; top: -8px; right: -8px; font-weight: 700; box-shadow: 0 2px 8px rgba(255,111,97,0.15); z-index: 2; transition: background 0.2s, transform 0.2s; }
+    .cart-badge:not(:empty) { animation: popBadge 0.5s; }
+    @keyframes popBadge { 0% { transform: scale(1); } 40% { transform: scale(1.2); } 80% { transform: scale(0.9); } 100% { transform: scale(1); } }
+    .hero-book-service { text-align: center; padding: 4rem 1rem 2rem 1rem; background: linear-gradient(120deg, #fff6e6 0%, #f8fafc 100%); animation: fadeInDown 1s 0.2s backwards; }
+    .hero-book-service h1 { font-size: 2.5rem; color: #ff6f61; margin-bottom: 1rem; }
+    .hero-book-service p { font-size: 1.2rem; color: #444; }
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-40px); } to { opacity: 1; transform: translateY(0); } }
+    .book-section { max-width: 600px; margin: 2.5rem auto; background: #fff; border-radius: 1.2rem; box-shadow: 0 2px 16px rgba(0,0,0,0.04); padding: 2rem 1rem; animation: fadeInUp 1s 0.4s backwards; }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+    .book-section h2 { color: #ff6f61; font-size: 1.3rem; margin-bottom: 1rem; text-align: center; }
+    .book-form { display: flex; flex-direction: column; gap: 1rem; }
+    .book-form select, .book-form input, .book-form textarea { padding: 0.7rem 1.2rem; border-radius: 2rem; border: 1px solid #ddd; font-size: 1rem; outline: none; transition: border 0.2s; }
+    .book-form input:focus, .book-form select:focus, .book-form textarea:focus { border: 1.5px solid #ff6f61; }
+    .book-form textarea { border-radius: 1rem; resize: vertical; min-height: 60px; }
+    .book-form button { background: #ff6f61; color: #fff; border: none; padding: 0.7rem 2rem; border-radius: 2rem; font-size: 1rem; cursor: pointer; transition: background 0.2s, transform 0.2s; }
+    .book-form button:hover { background: #ff3b1f; transform: scale(1.05); }
+    .confirmation { background: #f8fafc; border-radius: 1rem; padding: 1.2rem; color: #25d366; text-align: center; font-weight: 600; margin-top: 1.2rem; animation: fadeIn 1s 0.8s backwards; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .footer { text-align: center; padding: 2rem 1rem 1rem 1rem; background: #fff; color: #888; font-size: 1rem; margin-top: 3rem; border-top: 1px solid #eee; }
+    .footer-links a { color: #888; text-decoration: none; margin: 0 0.5rem; font-size: 0.95rem; }
+    .footer-links a:hover { color: #ff6f61; }
+    @media (max-width: 600px) { .navbar { flex-direction: column; align-items: flex-start; padding: 1rem; } nav { margin-top: 0.5rem; } .hero-book-service { padding: 2rem 0.5rem 1.5rem 0.5rem; } }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo"><span class="material-icons">pets</span> Pawverse</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="academy.html">Pet Academy</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+      <a href="cart.html" class="cart-icon"><span class="material-icons">shopping_cart</span><span class="cart-badge"></span></a>
+      <a href="order-tracking.html">Order Tracking</a>
+      <a href="profile.html" class="account-icon"><span class="material-icons">account_circle</span></a>
+    </nav>
+  </header>
+  <main>
+    <section class="hero-book-service">
+      <h1>Book a Vet or Sitter</h1>
+      <p>On-demand care for your pets. Book a vet visit or a trusted sitter in just a few clicks!</p>
+    </section>
+    <section class="book-section">
+      <h2>Book a Service</h2>
+      <form class="book-form" id="book-form">
+        <select id="service-type" required>
+          <option value="">Select Service</option>
+          <option value="Vet Visit">Vet Visit</option>
+          <option value="Pet Sitter">Pet Sitter</option>
+        </select>
+        <input type="date" id="service-date" required />
+        <input type="time" id="service-time" required />
+        <textarea id="service-notes" placeholder="Notes (e.g., pet name, special needs)"></textarea>
+        <button type="submit">Book Now</button>
+      </form>
+      <div class="confirmation" id="confirmation" style="display:none;"></div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div>© Pawverse 2024. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a> |
+      <a href="#">Terms of Service</a>
+    </div>
+  </footer>
+  <script src="cart.js"></script>
+  <script>
+    document.getElementById('book-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const type = document.getElementById('service-type').value;
+      const date = document.getElementById('service-date').value;
+      const time = document.getElementById('service-time').value;
+      const notes = document.getElementById('service-notes').value.trim();
+      if (!type || !date || !time) return;
+      document.getElementById('confirmation').style.display = 'block';
+      document.getElementById('confirmation').textContent = `Booked: ${type} on ${date} at ${time}${notes ? ' ('+notes+')' : ''}`;
+      this.reset();
+      setTimeout(() => { document.getElementById('confirmation').style.display = 'none'; }, 3000);
+    });
+  </script>
+</body>
+</html> 

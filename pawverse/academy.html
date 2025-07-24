@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pet Academy - Pawverse</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    body { margin: 0; font-family: 'Montserrat', Arial, sans-serif; background: #f8fafc; color: #222; }
+    .navbar { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.04); position: sticky; top: 0; z-index: 10; }
+    .logo { font-size: 1.5rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; }
+    nav a { margin: 0 0.7rem; text-decoration: none; color: #333; font-weight: 500; transition: color 0.2s; position: relative; }
+    nav a::after { content: ''; display: block; width: 0; height: 2px; background: #ff6f61; transition: width 0.3s; position: absolute; left: 0; bottom: -2px; }
+    nav a:hover { color: #ff6f61; }
+    nav a:hover::after { width: 100%; }
+    .hero-academy { text-align: center; padding: 4rem 1rem 2rem 1rem; background: linear-gradient(120deg, #fff6e6 0%, #f8fafc 100%); }
+    .hero-academy h1 { font-size: 2.5rem; color: #ff6f61; margin-bottom: 1rem; }
+    .hero-academy p { font-size: 1.2rem; color: #444; }
+    .academy-grid { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; margin: 2.5rem auto; max-width: 1100px; padding: 2rem 1rem; background: #fff; border-radius: 1.2rem; box-shadow: 0 2px 16px rgba(0,0,0,0.04); }
+    .academy-card { flex: 1 1 220px; min-width: 220px; max-width: 320px; background: #fff6e6; border-radius: 1rem; box-shadow: 0 2px 8px rgba(255,111,97,0.08); padding: 1.5rem 1rem; text-align: left; transition: transform 0.2s, box-shadow 0.2s; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+    .academy-card:hover { transform: translateY(-8px) scale(1.04); box-shadow: 0 8px 32px rgba(255,111,97,0.15); }
+    .academy-card img { width: 100%; height: 120px; object-fit: cover; border-radius: 1rem; margin-bottom: 1rem; border: 3px solid #fff; box-shadow: 0 2px 8px rgba(255,111,97,0.10); }
+    .academy-card h3 { margin: 0.5rem 0 0.3rem 0; font-size: 1.1rem; color: #ff6f61; }
+    .academy-card p { font-size: 1rem; color: #444; margin-bottom: 0.5rem; flex: 1; }
+    .academy-card .category { font-size: 0.95rem; color: #888; margin-bottom: 0.5rem; }
+    .academy-card a { color: #ff6f61; text-decoration: none; font-weight: 600; margin-top: 0.5rem; align-self: flex-end; }
+    .academy-card a:hover { text-decoration: underline; }
+    .footer { text-align: center; padding: 2rem 1rem 1rem 1rem; background: #fff; color: #888; font-size: 1rem; margin-top: 3rem; border-top: 1px solid #eee; }
+    .footer-links a { color: #888; text-decoration: none; margin: 0 0.5rem; font-size: 0.95rem; }
+    .footer-links a:hover { color: #ff6f61; }
+    @media (max-width: 900px) { .academy-grid { flex-direction: column; align-items: center; } }
+    @media (max-width: 600px) { .navbar { flex-direction: column; align-items: flex-start; padding: 1rem; } nav { margin-top: 0.5rem; } .hero-academy { padding: 2rem 0.5rem 1.5rem 0.5rem; } }
+    .cart-badge {
+      display: inline-block;
+      min-width: 18px;
+      height: 18px;
+      background: #ff6f61;
+      color: #fff;
+      font-size: 0.85rem;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 18px;
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      font-weight: 700;
+      box-shadow: 0 2px 8px rgba(255,111,97,0.15);
+      z-index: 2;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .cart-badge:not(:empty) {
+      animation: popBadge 0.5s;
+    }
+    @keyframes popBadge {
+      0% { transform: scale(1); }
+      40% { transform: scale(1.2); }
+      80% { transform: scale(0.9); }
+      100% { transform: scale(1); }
+    }
+    nav a:focus, button:focus {
+      outline: 2px solid #ff6f61;
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo"><span class="material-icons">pets</span> Pawverse</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="academy.html">Pet Academy</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+      <a href="order-tracking.html">Order Tracking</a>
+      <a href="cart.html" class="cart-icon"><span class="material-icons">shopping_cart</span><span class="cart-badge"></span></a>
+      <a href="profile.html" class="account-icon"><span class="material-icons">account_circle</span></a>
+    </nav>
+  </header>
+  <main>
+    <section class="hero-academy">
+      <h1>Pet Academy</h1>
+      <p>Expert tips, nutrition guides, and resources for every pet parent.</p>
+    </section>
+    <section class="academy-grid">
+      <div class="academy-card">
+        <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=400&q=80" alt="Dog Nutrition" />
+        <div class="category">Dog Nutrition</div>
+        <h3>Feeding Your Dog Right</h3>
+        <p>Discover the essentials of a balanced diet for your canine friend.</p>
+        <a href="#">Read More</a>
+      </div>
+      <div class="academy-card">
+        <img src="https://images.unsplash.com/photo-1518715308788-3005759c61d3?auto=format&fit=crop&w=400&q=80" alt="Cat Care" />
+        <div class="category">Cat Care</div>
+        <h3>Cat Care Basics</h3>
+        <p>Everything you need to know to keep your cat healthy and happy.</p>
+        <a href="#">Read More</a>
+      </div>
+      <div class="academy-card">
+        <img src="https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=400&q=80" alt="First-Time Pet Owners" />
+        <div class="category">First-Time Pet Owners</div>
+        <h3>Getting Started with Pets</h3>
+        <p>Tips and tricks for new pet parents to build a loving bond.</p>
+        <a href="#">Read More</a>
+      </div>
+      <div class="academy-card">
+        <img src="https://images.unsplash.com/photo-1518715308788-3005759c61d3?auto=format&fit=crop&w=400&q=80" alt="Vet Tips" />
+        <div class="category">Vet Tips</div>
+        <h3>Ask the Vet</h3>
+        <p>Expert advice from our veterinary panel for your pet's well-being.</p>
+        <a href="#">Read More</a>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div>© Pawverse 2024. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a> |
+      <a href="#">Terms of Service</a>
+    </div>
+  </footer>
+  <script src="cart.js"></script>
+</body>
+</html> 

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adopt a Pet - Pawverse</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    body { margin: 0; font-family: 'Montserrat', Arial, sans-serif; background: #f8fafc; color: #222; }
+    .navbar { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.04); position: sticky; top: 0; z-index: 10; }
+    .logo { font-size: 1.5rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; }
+    nav a { margin: 0 0.7rem; text-decoration: none; color: #333; font-weight: 500; transition: color 0.2s; position: relative; }
+    nav a::after { content: ''; display: block; width: 0; height: 2px; background: #ff6f61; transition: width 0.3s; position: absolute; left: 0; bottom: -2px; }
+    nav a:hover { color: #ff6f61; }
+    nav a:hover::after { width: 100%; }
+    .cart-badge { display: inline-block; min-width: 18px; height: 18px; background: #ff6f61; color: #fff; font-size: 0.85rem; border-radius: 50%; text-align: center; line-height: 18px; position: absolute; top: -8px; right: -8px; font-weight: 700; box-shadow: 0 2px 8px rgba(255,111,97,0.15); z-index: 2; transition: background 0.2s, transform 0.2s; }
+    .cart-badge:not(:empty) { animation: popBadge 0.5s; }
+    @keyframes popBadge { 0% { transform: scale(1); } 40% { transform: scale(1.2); } 80% { transform: scale(0.9); } 100% { transform: scale(1); } }
+    .hero-adopt { text-align: center; padding: 4rem 1rem 2rem 1rem; background: linear-gradient(120deg, #fff6e6 0%, #f8fafc 100%); animation: fadeInDown 1s 0.2s backwards; }
+    .hero-adopt h1 { font-size: 2.5rem; color: #ff6f61; margin-bottom: 1rem; }
+    .hero-adopt p { font-size: 1.2rem; color: #444; }
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-40px); } to { opacity: 1; transform: translateY(0); } }
+    .adopt-section { max-width: 1100px; margin: 2.5rem auto; background: #fff; border-radius: 1.2rem; box-shadow: 0 2px 16px rgba(0,0,0,0.04); padding: 2rem 1rem; animation: fadeInUp 1s 0.4s backwards; }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+    .adopt-gallery { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; margin-bottom: 2rem; }
+    .adopt-card { flex: 1 1 260px; min-width: 220px; max-width: 320px; background: #fff6e6; border-radius: 1rem; box-shadow: 0 2px 8px rgba(255,111,97,0.08); padding: 2rem 1rem; text-align: center; position: relative; animation: fadeIn 1s 0.6s backwards; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .adopt-card img { width: 90px; height: 90px; object-fit: cover; border-radius: 50%; margin-bottom: 1rem; border: 3px solid #fff; box-shadow: 0 2px 8px rgba(255,111,97,0.10); }
+    .adopt-card h3 { margin: 0.5rem 0 0.3rem 0; font-size: 1.1rem; color: #ff6f61; }
+    .adopt-card p { font-size: 1rem; color: #444; margin-bottom: 0.5rem; }
+    .adopt-card .adopt-btn { background: #ff6f61; color: #fff; border: none; padding: 0.5rem 1.2rem; border-radius: 2rem; font-size: 0.95rem; cursor: pointer; margin-top: 0.7rem; transition: background 0.2s, transform 0.2s; }
+    .adopt-card .adopt-btn:hover { background: #25d366; transform: scale(1.05); }
+    .adopt-form { max-width: 400px; margin: 0 auto; background: #f8fafc; border-radius: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.06); padding: 1.5rem 1rem; animation: fadeIn 1s 0.8s backwards; }
+    .adopt-form h4 { color: #ff6f61; margin-bottom: 1rem; font-size: 1.1rem; }
+    .adopt-form input, .adopt-form textarea { width: 100%; padding: 0.7rem 1.2rem; border-radius: 2rem; border: 1px solid #ddd; font-size: 1rem; margin-bottom: 0.8rem; outline: none; transition: border 0.2s; }
+    .adopt-form input:focus, .adopt-form textarea:focus { border: 1.5px solid #ff6f61; }
+    .adopt-form textarea { border-radius: 1rem; resize: vertical; min-height: 60px; }
+    .adopt-form button { background: #ff6f61; color: #fff; border: none; padding: 0.7rem 2rem; border-radius: 2rem; font-size: 1rem; cursor: pointer; transition: background 0.2s, transform 0.2s; }
+    .adopt-form button:hover { background: #ff3b1f; transform: scale(1.05); }
+    .adopt-confirmation { background: #f8fafc; border-radius: 1rem; padding: 1.2rem; color: #25d366; text-align: center; font-weight: 600; margin-top: 1.2rem; animation: fadeIn 1s 0.8s backwards; }
+    .footer { text-align: center; padding: 2rem 1rem 1rem 1rem; background: #fff; color: #888; font-size: 1rem; margin-top: 3rem; border-top: 1px solid #eee; }
+    .footer-links a { color: #888; text-decoration: none; margin: 0 0.5rem; font-size: 0.95rem; }
+    .footer-links a:hover { color: #ff6f61; }
+    @media (max-width: 900px) { .adopt-gallery { flex-direction: column; align-items: center; } }
+    @media (max-width: 600px) { .navbar { flex-direction: column; align-items: flex-start; padding: 1rem; } nav { margin-top: 0.5rem; } .hero-adopt { padding: 2rem 0.5rem 1.5rem 0.5rem; } }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo"><span class="material-icons">pets</span> Pawverse</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="academy.html">Pet Academy</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+      <a href="order-tracking.html">Order Tracking</a>
+      <a href="cart.html" class="cart-icon"><span class="material-icons">shopping_cart</span><span class="cart-badge"></span></a>
+      <a href="profile.html" class="account-icon"><span class="material-icons">account_circle</span></a>
+    </nav>
+  </header>
+  <main>
+    <section class="hero-adopt">
+      <h1>Adopt a Pet</h1>
+      <p>Find your new best friend! Browse adoptable pets and send an inquiry to start the adoption process.</p>
+    </section>
+    <section class="adopt-section">
+      <div class="adopt-gallery" id="adopt-gallery">
+        <!-- Adoptable pets will be rendered here by JS -->
+      </div>
+      <form class="adopt-form" id="adopt-form">
+        <h4>Adoption Inquiry</h4>
+        <input type="text" id="adopter-name" placeholder="Your Name" required />
+        <input type="email" id="adopter-email" placeholder="Your Email" required />
+        <input type="text" id="adopt-pet-name" placeholder="Pet Name (from above)" required />
+        <textarea id="adopt-message" placeholder="Why do you want to adopt?" required></textarea>
+        <button type="submit">Send Inquiry</button>
+      </form>
+      <div class="adopt-confirmation" id="adopt-confirmation" style="display:none;"></div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div>© Pawverse 2024. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a> |
+      <a href="#">Terms of Service</a>
+    </div>
+  </footer>
+  <script src="cart.js"></script>
+  <script>
+    // Example adoptable pets (static for demo)
+    const pets = [
+      { name: 'Simba', type: 'Dog', breed: 'Golden Retriever', age: 2, desc: 'Friendly, playful, and loves kids.', photo: 'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=200&q=80' },
+      { name: 'Milo', type: 'Cat', breed: 'Siamese', age: 1, desc: 'Quiet, affectionate, and litter trained.', photo: 'https://images.unsplash.com/photo-1518715308788-3005759c61d3?auto=format&fit=crop&w=200&q=80' },
+      { name: 'Rocky', type: 'Dog', breed: 'Beagle', age: 3, desc: 'Energetic, loves walks, good with other pets.', photo: 'https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=200&q=80' },
+      { name: 'Luna', type: 'Cat', breed: 'Persian', age: 2, desc: 'Gentle, fluffy, and loves to nap.', photo: 'https://images.unsplash.com/photo-1518715308788-3005759c61d3?auto=format&fit=crop&w=200&q=80' }
+    ];
+    function renderAdoptGallery() {
+      const gallery = document.getElementById('adopt-gallery');
+      gallery.innerHTML = '';
+      pets.forEach(pet => {
+        const card = document.createElement('div');
+        card.className = 'adopt-card';
+        card.innerHTML = `
+          <img src="${pet.photo}" alt="${pet.name}" />
+          <h3>${pet.name}</h3>
+          <p><b>Type:</b> ${pet.type}</p>
+          <p><b>Breed:</b> ${pet.breed}</p>
+          <p><b>Age:</b> ${pet.age} years</p>
+          <p>${pet.desc}</p>
+          <button class="adopt-btn" onclick="document.getElementById('adopt-pet-name').value='${pet.name}';window.scrollTo({top:document.getElementById('adopt-form').offsetTop-60,behavior:'smooth'});">Adopt Me</button>
+        `;
+        gallery.appendChild(card);
+      });
+    }
+    renderAdoptGallery();
+    document.getElementById('adopt-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      document.getElementById('adopt-confirmation').style.display = 'block';
+      document.getElementById('adopt-confirmation').textContent = 'Thank you for your inquiry! Our team will contact you soon.';
+      this.reset();
+      setTimeout(() => { document.getElementById('adopt-confirmation').style.display = 'none'; }, 3000);
+    });
+  </script>
+</body>
+</html> 

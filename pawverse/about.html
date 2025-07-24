@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us - Pawverse</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    body { margin: 0; font-family: 'Montserrat', Arial, sans-serif; background: #f8fafc; color: #222; }
+    .navbar { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.04); position: sticky; top: 0; z-index: 10; }
+    .logo { font-size: 1.5rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; }
+    nav a { margin: 0 0.7rem; text-decoration: none; color: #333; font-weight: 500; transition: color 0.2s; position: relative; }
+    nav a::after { content: ''; display: block; width: 0; height: 2px; background: #ff6f61; transition: width 0.3s; position: absolute; left: 0; bottom: -2px; }
+    nav a:hover { color: #ff6f61; }
+    nav a:hover::after { width: 100%; }
+    .hero-about { text-align: center; padding: 4rem 1rem 2rem 1rem; background: linear-gradient(120deg, #fff6e6 0%, #f8fafc 100%); }
+    .hero-about h1 { font-size: 2.5rem; color: #ff6f61; margin-bottom: 1rem; }
+    .hero-about p { font-size: 1.2rem; color: #444; }
+    .mission { max-width: 900px; margin: 2.5rem auto; background: #fff; border-radius: 1.2rem; box-shadow: 0 2px 16px rgba(0,0,0,0.04); padding: 2rem 1rem; text-align: center; }
+    .mission h2 { color: #ff6f61; font-size: 1.5rem; margin-bottom: 1rem; }
+    .mission p { color: #444; font-size: 1.1rem; }
+    .team-section { max-width: 1100px; margin: 2.5rem auto; background: #fff; border-radius: 1.2rem; box-shadow: 0 2px 16px rgba(0,0,0,0.04); padding: 2rem 1rem; }
+    .team-title { text-align: center; color: #ff6f61; font-size: 2rem; margin-bottom: 2rem; font-weight: 700; }
+    .team-grid { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; }
+    .team-card { flex: 1 1 220px; min-width: 220px; max-width: 260px; background: #fff6e6; border-radius: 1rem; box-shadow: 0 2px 8px rgba(255,111,97,0.08); padding: 1.5rem 1rem; text-align: center; transition: transform 0.2s, box-shadow 0.2s; position: relative; overflow: hidden; }
+    .team-card:hover { transform: translateY(-8px) scale(1.04); box-shadow: 0 8px 32px rgba(255,111,97,0.15); }
+    .team-card img { width: 90px; height: 90px; object-fit: cover; border-radius: 50%; margin-bottom: 1rem; border: 3px solid #fff; box-shadow: 0 2px 8px rgba(255,111,97,0.10); }
+    .team-card h3 { margin: 0.5rem 0 0.3rem 0; font-size: 1.1rem; color: #ff6f61; }
+    .team-card p { font-size: 1rem; color: #444; margin-bottom: 0.5rem; }
+    .footer { text-align: center; padding: 2rem 1rem 1rem 1rem; background: #fff; color: #888; font-size: 1rem; margin-top: 3rem; border-top: 1px solid #eee; }
+    .footer-links a { color: #888; text-decoration: none; margin: 0 0.5rem; font-size: 0.95rem; }
+    .footer-links a:hover { color: #ff6f61; }
+    @media (max-width: 900px) { .team-grid { flex-direction: column; align-items: center; } }
+    @media (max-width: 600px) { .navbar { flex-direction: column; align-items: flex-start; padding: 1rem; } nav { margin-top: 0.5rem; } .hero-about { padding: 2rem 0.5rem 1.5rem 0.5rem; } }
+    .cart-badge {
+      display: inline-block;
+      min-width: 18px;
+      height: 18px;
+      background: #ff6f61;
+      color: #fff;
+      font-size: 0.85rem;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 18px;
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      font-weight: 700;
+      box-shadow: 0 2px 8px rgba(255,111,97,0.15);
+      z-index: 2;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .cart-badge:not(:empty) {
+      animation: popBadge 0.5s;
+    }
+    @keyframes popBadge {
+      0% { transform: scale(1); }
+      40% { transform: scale(1.2); }
+      80% { transform: scale(0.9); }
+      100% { transform: scale(1); }
+    }
+    nav a:focus, button:focus {
+      outline: 2px solid #ff6f61;
+      outline-offset: 2px;
+    }
+    .mobile-nav { display: none; }
+    @media (max-width: 700px) {
+      .navbar nav { display: none; }
+      .mobile-nav { display: block; position: fixed; top: 0; left: 0; width: 100vw; z-index: 10001; }
+      .hamburger {
+        background: #fff;
+        border: none;
+        font-size: 2rem;
+        padding: 0.5rem 1rem;
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        z-index: 10002;
+        border-radius: 50%;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        cursor: pointer;
+      }
+      .side-panel {
+        position: fixed;
+        top: 0;
+        left: -260px;
+        width: 240px;
+        height: 100vh;
+        background: #fff;
+        box-shadow: 2px 0 16px rgba(0,0,0,0.08);
+        z-index: 10003;
+        display: flex;
+        flex-direction: column;
+        transition: left 0.3s cubic-bezier(.4,0,.2,1);
+      }
+      .side-panel.open { left: 0; }
+      .side-panel-header {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 1.2rem;
+        font-weight: 700;
+        padding: 1.2rem 1rem 1rem 1rem;
+        border-bottom: 1px solid #eee;
+        background: #fff6e6;
+        justify-content: space-between;
+      }
+      .close-btn {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: #ff6f61;
+        cursor: pointer;
+      }
+      .side-panel-links {
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+      }
+      .side-panel-links a {
+        color: #333;
+        text-decoration: none;
+        font-size: 1.1rem;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+      .side-panel-links a:hover {
+        color: #ff6f61;
+      }
+      .side-panel-backdrop {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; width: 100vw; height: 100vh;
+        background: rgba(0,0,0,0.18);
+        z-index: 10002;
+        transition: opacity 0.3s;
+        opacity: 0;
+      }
+      .side-panel-backdrop.show {
+        display: block;
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo"><span class="material-icons">pets</span> Pawverse</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="academy.html">Pet Academy</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+      <a href="order-tracking.html">Order Tracking</a>
+      <a href="cart.html" class="cart-icon"><span class="material-icons">shopping_cart</span><span class="cart-badge"></span></a>
+      <a href="profile.html" class="account-icon"><span class="material-icons">account_circle</span></a>
+    </nav>
+  </header>
+  <main>
+    <section class="hero-about">
+      <h1>About Pawverse</h1>
+      <p>Our mission is to make pet care easy, joyful, and accessible for all. Meet the team behind Pawverse!</p>
+    </section>
+    <section class="mission">
+      <h2>Our Mission & Vision</h2>
+      <p>To empower pet parents with the best products, expert advice, and a supportive community. We believe every pet deserves love, care, and the best nutrition.</p>
+    </section>
+    <section class="team-section">
+      <div class="team-title">Meet Our Team</div>
+      <div class="team-grid">
+        <div class="team-card">
+          <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Founder" />
+          <h3>Arjun Mehra</h3>
+          <p>Founder & CEO</p>
+        </div>
+        <div class="team-card">
+          <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Co-Founder" />
+          <h3>Neha Sharma</h3>
+          <p>Co-Founder & CMO</p>
+        </div>
+        <div class="team-card">
+          <img src="https://randomuser.me/api/portraits/men/33.jpg" alt="Vet Panel" />
+          <h3>Dr. Ravi Singh</h3>
+          <p>Chief Veterinary Officer</p>
+        </div>
+        <div class="team-card">
+          <img src="https://randomuser.me/api/portraits/women/22.jpg" alt="Vet Panel" />
+          <h3>Dr. Aarti Joshi</h3>
+          <p>Senior Veterinarian</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div>© Pawverse 2024. All rights reserved.</div>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a> |
+      <a href="#">Terms of Service</a>
+    </div>
+  </footer>
+  <script src="cart.js"></script>
+  <div class="mobile-nav">
+    <button id="open-mobile-nav" class="hamburger"><span class="material-icons">menu</span></button>
+    <div id="side-panel" class="side-panel">
+      <div class="side-panel-header">
+        <span class="material-icons">pets</span> Pawverse
+        <button id="close-mobile-nav" class="close-btn"><span class="material-icons">close</span></button>
+      </div>
+      <nav class="side-panel-links">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="academy.html">Pet Academy</a>
+        <a href="blog.html">Blog</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+        <a href="order-tracking.html">Order Tracking</a>
+        <a href="cart.html">Cart</a>
+        <a href="profile.html">Profile</a>
+      </nav>
+    </div>
+    <div id="side-panel-backdrop" class="side-panel-backdrop"></div>
+  </div>
+  <script>
+    // Mobile nav logic
+    const openBtn = document.getElementById('open-mobile-nav');
+    const closeBtn = document.getElementById('close-mobile-nav');
+    const sidePanel = document.getElementById('side-panel');
+    const backdrop = document.getElementById('side-panel-backdrop');
+    openBtn.onclick = function() {
+      sidePanel.classList.add('open');
+      backdrop.classList.add('show');
+    };
+    closeBtn.onclick = function() {
+      sidePanel.classList.remove('open');
+      backdrop.classList.remove('show');
+    };
+    backdrop.onclick = function() {
+      sidePanel.classList.remove('open');
+      backdrop.classList.remove('show');
+    };
+  </script>
+</body>
+</html> 
